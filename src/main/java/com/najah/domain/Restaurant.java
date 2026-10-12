@@ -2,7 +2,6 @@ package com.najah.domain;
 import java.util.List;
 
 public class Restaurant {
-
     private String id;
     private String name;
     private boolean isOpen;
@@ -14,7 +13,6 @@ public class Restaurant {
         this.isOpen = isOpen;
         this.menu = menu;
     }
-
     public String getId() { return id; }
     public String getName() { return name; }
     public boolean isOpen() { return isOpen; }

@@ -1,7 +1,6 @@
 package com.najah.domain;
 
 public class MenuItem {
-
     private String id;
     private String name;
     private double price;
@@ -13,7 +12,6 @@ public class MenuItem {
         this.price = price;
         this.isAvailable = isAvailable;
     }
-
     public String getId() { return id; }
     public String getName() { return name; }
     public double getPrice() { return price; }
