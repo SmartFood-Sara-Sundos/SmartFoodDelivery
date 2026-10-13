@@ -12,7 +12,6 @@ public class RestaurantServiceTest {
 
     @Test
     public void testGetOpenRestaurants() {
-        // 1. Setup
         RestaurantService service = new RestaurantService();
         Restaurant openRest = new Restaurant("R1", "Open Burger", true, null);
         Restaurant closedRest = new Restaurant("R2", "Closed Pizza", false, null);

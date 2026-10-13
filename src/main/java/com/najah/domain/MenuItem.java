@@ -17,19 +17,6 @@ public class MenuItem {
     public String getName() { return name; }
     public double getPrice() { return price; }
     public boolean isAvailable() { return isAvailable; }
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, price, isAvailable);
-    }
 
-    @Override
-    public String toString() {
-        return "MenuItem{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", available=" + isAvailable +
-                '}';
-    }
 
 }
