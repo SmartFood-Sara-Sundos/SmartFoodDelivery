@@ -22,4 +22,12 @@ class DomainTest {
         assertTrue(rest.isOpen());
         assertNull(rest.getMenu());
     }
+
+    @Test
+    void testUser() {
+        User user = new User("sara", "pass123", "Manager");
+        assertEquals("sara", user.getUsername());
+        assertEquals("pass123", user.getPassword());
+        assertEquals("Manager", user.getRole());
+    }
 }
