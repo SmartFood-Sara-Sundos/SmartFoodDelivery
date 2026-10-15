@@ -4,10 +4,12 @@ import com.najah.domain.User;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class AuthServiceTest {
+class AuthServiceTest
+{
 
     @Test
-    void testValidLogin() {
+    void testValidLogin()
+    {
 
         AuthService authService = new AuthService();
         User testUser = new User("sara", "12345", "Customer");
@@ -19,7 +21,8 @@ class AuthServiceTest {
     }
 
     @Test
-    void testInvalidLogin() {
+    void testInvalidLogin()
+    {
 
         AuthService authService = new AuthService();
         User testUser = new User("sara", "12345", "Customer");

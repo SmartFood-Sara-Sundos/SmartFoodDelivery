@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
     @Test
-    void testUserCreation() {
+    void testUserCreation()
+    {
         User user = new User("sara", "pass123", "Manager");
         assertEquals("sara", user.getUsername());
         assertEquals("pass123", user.getPassword());

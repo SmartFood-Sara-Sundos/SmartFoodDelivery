@@ -1,13 +1,15 @@
 package com.najah.domain;
 import java.util.List;
 
-public class Restaurant {
+public class Restaurant
+{
     private String id;
     private String name;
     private boolean isOpen;
     private List<MenuItem> menu;
 
-    public Restaurant(String id, String name, boolean isOpen, List<MenuItem> menu) {
+    public Restaurant(String id, String name, boolean isOpen, List<MenuItem> menu)
+    {
         this.id = id;
         this.name = name;
         this.isOpen = isOpen;

@@ -7,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class RestaurantServiceTest {
+public class RestaurantServiceTest
+{
 
 
     @Test
-    public void testGetOpenRestaurants() {
+    public void testGetOpenRestaurants()
+    {
         RestaurantService service = new RestaurantService();
         Restaurant openRest = new Restaurant("R1", "Open Burger", true, null);
         Restaurant closedRest = new Restaurant("R2", "Closed Pizza", false, null);
@@ -25,7 +27,8 @@ public class RestaurantServiceTest {
     }
 
     @Test
-    public void testGetAvailableMenu() {
+    public void testGetAvailableMenu()
+    {
         RestaurantService service = new RestaurantService();
         MenuItem availableItem = new MenuItem("M1", "Fries", 2.99, true);
         MenuItem unavailableItem = new MenuItem("M2", "Ice Cream", 1.99, false);

@@ -4,7 +4,8 @@ import com.najah.domain.User;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AuthService {
+public class AuthService
+{
 
     // In-memory Database
     private Map<String, User> usersDatabase = new HashMap<>();
@@ -13,10 +14,12 @@ public class AuthService {
         usersDatabase.put(user.getUsername(), user);
     }
 
-    public boolean login(String username, String password) {
+    public boolean login(String username, String password)
+    {
         User user = usersDatabase.get(username);
 
-        if (user != null && user.getPassword().equals(password)) {
+        if (user != null && user.getPassword().equals(password))
+        {
             System.out.println("Login success!");
             return true;
         }
