@@ -111,7 +111,7 @@ class OrderServiceTest
         Exception e = assertThrows(IllegalArgumentException.class,() ->{
             orderService.placeOrder(order);
         });
-        assertFalse(e.getMessage().contains("below the minimum"));
+        assertTrue(e.getMessage().contains("below the minimum"));
 
     }
     @Test
@@ -127,7 +127,7 @@ class OrderServiceTest
         Exception e = assertThrows(IllegalArgumentException.class,() ->{
             orderService.placeOrder(order);
         });
-        assertFalse(e.getMessage().contains("does not deliver"));
+        assertTrue(e.getMessage().contains("does not deliver"));
 
     }
     @Test
@@ -143,7 +143,7 @@ class OrderServiceTest
         Exception e = assertThrows(IllegalArgumentException.class,() ->{
             orderService.placeOrder(order);
         });
-        assertFalse(e.getMessage().contains("Invalid quantity"));
+        assertTrue(e.getMessage().contains("Invalid quantity"));
 
     }
 }
