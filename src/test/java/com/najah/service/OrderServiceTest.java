@@ -79,7 +79,7 @@ class OrderServiceTest
         Exception e = assertThrows(IllegalArgumentException.class,() ->{
             orderService.placeOrder(emptyOrder);
     });
-        assertFalse(e.getMessage().contains("Empty Orders"));
+        assertTrue(e.getMessage().contains("Empty orders"));
 
     }
     @Test
