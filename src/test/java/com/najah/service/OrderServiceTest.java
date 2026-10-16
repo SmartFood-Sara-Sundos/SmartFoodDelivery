@@ -90,12 +90,12 @@ class OrderServiceTest
         Restaurant rest = new Restaurant ("R1","Pizza Time",true,Arrays.asList(item),10.0,Arrays.asList("Nablus","Jenin"));
         User customer = new User("sara","123","Customer");
 
-        Order emptyOrder = new Order("O-005", customer, rest, Arrays.asList(new OrderItem(item,1)),"Nablus");
+        Order order = new Order("O-005", customer, rest, Arrays.asList(new OrderItem(item,1)),"Nablus");
 
         Exception e = assertThrows(IllegalArgumentException.class,() ->{
-            orderService.placeOrder(emptyOrder);
+            orderService.placeOrder(order);
         });
-        assertFalse(e.getMessage().contains("is unavailable"));
+        assertTrue(e.getMessage().contains("is unavailable"));
 
     }
     @Test
