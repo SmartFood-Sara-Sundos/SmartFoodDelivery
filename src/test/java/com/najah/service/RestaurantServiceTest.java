@@ -15,8 +15,8 @@ public class RestaurantServiceTest
     public void testGetOpenRestaurants()
     {
         RestaurantService service = new RestaurantService();
-        Restaurant openRest = new Restaurant("R1", "Open Burger", true, null);
-        Restaurant closedRest = new Restaurant("R2", "Closed Pizza", false, null);
+        Restaurant openRest = new Restaurant("R1", "Open Burger", true, null,0.0,null);
+        Restaurant closedRest = new Restaurant("R2", "Closed Pizza", false, null,0.0,null);
 
         service.addRestaurant(openRest);
         service.addRestaurant(closedRest);
@@ -34,7 +34,7 @@ public class RestaurantServiceTest
         MenuItem unavailableItem = new MenuItem("M2", "Ice Cream", 1.99, false);
 
         List<MenuItem> menu = Arrays.asList(availableItem, unavailableItem);
-        Restaurant rest = new Restaurant("R1", "Snack Bar", true, menu);
+        Restaurant rest = new Restaurant("R1", "Snack Bar", true, menu,1.0,Arrays.asList("Ramallah"));
 
         service.addRestaurant(rest);
 
