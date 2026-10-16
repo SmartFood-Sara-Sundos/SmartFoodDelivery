@@ -9,9 +9,10 @@ public class Order
     private Restaurant restaurant;
     private List<OrderItem> items;
     private double totalAmount;
-    private String status; // Pending, Cancelled, Preparing, Delivered
+    private String status; // Pending, Canceled, Preparing, Delivered
+    private String deliveryAddress;//edited
 
-    public Order(String orderId, User customer, Restaurant restaurant, List<OrderItem> items)
+    public Order(String orderId, User customer, Restaurant restaurant, List<OrderItem> items,String deliveryAddress)
     {
         this.orderId = orderId;
         this.customer = customer;
@@ -19,6 +20,7 @@ public class Order
         this.items = items;
         this.status = "Pending";
         this.totalAmount = calculateTotal();
+        this.deliveryAddress=deliveryAddress;
     }
 
 
@@ -39,7 +41,7 @@ public class Order
     public List<OrderItem> getItems() { return items; }
     public double getTotalAmount() { return totalAmount; }
     public String getStatus() { return status; }
-
+    public String getDeliveryAddress(){ return deliveryAddress;}
 
     public void setStatus(String status) { this.status = status; }
 }
