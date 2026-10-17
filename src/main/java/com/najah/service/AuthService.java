@@ -20,11 +20,11 @@ public class AuthService
 
         if (user != null && user.getPassword().equals(password))
         {
-            System.out.println("Login success!");
+        //    System.out.println("Login success!");
             return true;
         }
 
-        System.out.println("Error: Invalid credentials!");
+       // System.out.println("Error: Invalid credentials!");
         return false;
     }
 }
