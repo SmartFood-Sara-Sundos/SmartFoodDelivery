@@ -11,6 +11,7 @@ public class Order
     private double totalAmount;
     private String status; // Pending, Canceled, Preparing, Delivered
     private String deliveryAddress;//edited
+    private Driver assignedDriver;
 
     public Order(String orderId, User customer, Restaurant restaurant, List<OrderItem> items,String deliveryAddress)
     {
@@ -41,7 +42,10 @@ public class Order
     public List<OrderItem> getItems() { return items; }
     public double getTotalAmount() { return totalAmount; }
     public String getStatus() { return status; }
-    public String getDeliveryAddress(){ return deliveryAddress;}
+    public String getDeliveryAddress(){ return deliveryAddress; }
 
     public void setStatus(String status) { this.status = status; }
+    public Driver getAssignedDriver() { return assignedDriver; }
+
+    public void setAssignedDriver(Driver assignedDriver) { this.assignedDriver = assignedDriver; }
 }
