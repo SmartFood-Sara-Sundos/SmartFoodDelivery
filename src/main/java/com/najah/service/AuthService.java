@@ -3,14 +3,17 @@ package com.najah.service;
 import com.najah.domain.User;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class AuthService
 {
 
-    // In-memory Database
+    private static final Logger logger = Logger.getLogger(AuthService.class.getName());
+
     private Map<String, User> usersDatabase = new HashMap<>();
 
-    public void registerUser(User user) {
+    public void registerUser(User user)
+    {
         usersDatabase.put(user.getUsername(), user);
     }
 
@@ -20,11 +23,12 @@ public class AuthService
 
         if (user != null && user.getPassword().equals(password))
         {
-        //    System.out.println("Login success!");
+
+            logger.info("Login success!");
             return true;
         }
 
-       // System.out.println("Error: Invalid credentials!");
+        logger.warning("Error: Invalid credentials!");
         return false;
     }
 }

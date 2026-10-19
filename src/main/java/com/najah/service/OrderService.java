@@ -11,6 +11,28 @@ public class OrderService {
 
     // In-memory Database
     private Map<String, Order> orderDatabase = new HashMap<>();
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(OrderService.class.getName());
+
+
+    private PricingService pricingService = new PricingService();
+
+    public void setPricingStrategy(PricingStrategy strategy) {
+        this.pricingService.setPricingStrategy(strategy);
+    }
+
+
+    public double getFinalReceipt(String orderId, com.najah.domain.Driver driver) {
+        Order order = orderDatabase.get(orderId);
+        if (order == null) {
+            logger.warning("Error: Order not found.");
+            return 0.0;
+        }
+
+        double finalPrice = pricingService.calculateTotalBill(order, driver);
+        logger.info("Final Receipt for Order " + orderId + " is: " + finalPrice);
+
+        return finalPrice;
+    }
 
     public Order placeOrder(Order order) {
         if (order.getItems() == null || order.getItems().isEmpty()) {
@@ -55,12 +77,12 @@ public class OrderService {
         if (order.getStatus().equals("Pending"))
         {
             order.setStatus("Cancelled");
-            //System.out.println("Order " + orderId + " has been cancelled.");
+            logger.info("Order " + orderId + " has been cancelled.");
             return true;
         }
         else
         {
-            //System.out.println("Error: Order cannot be cancelled because its status is " + order.getStatus());
+            logger.warning("Error: Order cannot be cancelled because its status is " + order.getStatus());
             return false;
         }
     }

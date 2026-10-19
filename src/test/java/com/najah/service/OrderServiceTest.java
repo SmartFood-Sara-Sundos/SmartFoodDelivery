@@ -146,4 +146,23 @@ class OrderServiceTest
         assertTrue(e.getMessage().contains("Invalid quantity"));
 
     }
+
+    @Test
+    void testGetFinalReceipt() {
+        OrderService orderService = new OrderService();
+        orderService.setPricingStrategy(new NormalPricingStrategy());
+
+        MenuItem item = new MenuItem("M1", "Burger", 10.0, true);
+        Restaurant rest = new Restaurant("R1", "KFC", true, Arrays.asList(item), 5.0, Arrays.asList("Nablus"));
+        User customer = new User("sara", "123", "Customer");
+
+        Order order = new Order("O-010", customer, rest, Arrays.asList(new OrderItem(item, 2)), "Nablus");
+        orderService.placeOrder(order);
+
+        Driver driver = new Driver("D1", "Omar", true, 10.0, 15.0);
+
+
+        double finalPrice = orderService.getFinalReceipt("O-010", driver);
+        assertEquals(35.0, finalPrice);
+    }
 }
