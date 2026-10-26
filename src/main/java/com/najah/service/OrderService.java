@@ -96,26 +96,26 @@ public class OrderService {
         boolean isValidTransition = false;
         switch(currentStatus){
             case "Pending":
-                if (newStatus.equals("Confirmed") || newStatus.equals("Cancelled"))
-                    isValidTransition = true;break;
+                if (newStatus.equals("Confirmed") || newStatus.equals("Cancelled")){
+                    isValidTransition = true;}break;
             case "Confirmed":
                 if(newStatus.equals("Preparing")){
-                    isValidTransition = true;
+                    isValidTransition = true;}
                     break;
-                }
+
             case "Preparing":
                 if(newStatus.equals("Ready")){
-                    isValidTransition = true;
+                    isValidTransition = true;}
                     break;
-                }
+
             case "Ready":
                 if(newStatus.equals("Out for Delivery")){
-                    isValidTransition = true;
+                    isValidTransition = true;}
                     break;
-                }
+
             case "Out for Delivery":
                 if(newStatus.equals("Delivered")){
-                    isValidTransition = true;
+                    isValidTransition = true;}
                     break;
                 }
                 if(isValidTransition){
@@ -126,7 +126,7 @@ public class OrderService {
 
         }
 
-    }
+
 
     public void payForOrder(Order order, double amountPaid, PaymentService paymentService){
         if(order.isPaid()){
