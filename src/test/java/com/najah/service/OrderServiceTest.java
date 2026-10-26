@@ -188,4 +188,18 @@ class OrderServiceTest
 
         }
     }
+
+    @Test
+    void testModifyDeliveredOrCancelledOrderFails() {
+        OrderService orderService = new OrderService();
+        Order order = new Order("O-999", null, null, Collections.emptyList(), "Nablus");
+
+        order.setStatus("Delivered");
+
+        Exception e = assertThrows(IllegalArgumentException.class, () -> {
+            orderService.updateOrderStatus(order, "Confirmed");
+        });
+
+        assertTrue(e.getMessage().contains("cannot be modified"));
+    }
 }
