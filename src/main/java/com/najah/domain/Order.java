@@ -16,6 +16,8 @@ public class Order
     private final String deliveryAddress;//edited
     private Driver assignedDriver;
     private transient List<OrderObserver> observers=new ArrayList<>();
+    private boolean isPaid=false;
+
 
     public Order(String orderId, User customer, Restaurant restaurant, List<OrderItem> items,String deliveryAddress)
     {
@@ -70,6 +72,12 @@ public class Order
            }
         }
 
+    }
+    public boolean isPaid(){
+        return isPaid;
+    }
+    public void setPaid(boolean paid){
+        isPaid=paid;
     }
 
 

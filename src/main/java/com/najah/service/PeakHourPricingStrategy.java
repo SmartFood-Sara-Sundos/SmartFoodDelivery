@@ -2,7 +2,7 @@ package com.najah.service;
 
 import com.najah.domain.Order;
 
-public class PeakHourPricingStrategy implements PricingStrategy
+public class  PeakHourPricingStrategy implements PricingStrategy
 {
     @Override
     public double calculateFinalPrice(Order order)

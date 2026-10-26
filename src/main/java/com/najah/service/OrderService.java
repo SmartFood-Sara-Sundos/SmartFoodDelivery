@@ -86,4 +86,56 @@ public class OrderService {
             return false;
         }
     }
+
+    public void updateOrderStatus(Order order, String newStatus){
+        String currentStatus = order.getStatus();
+
+        if(currentStatus.equals("Delivered") || currentStatus.equals("Cancelled")){
+            throw new IllegalArgumentException("Denied: Delivered or Cancelled orders cannot be modified");
+        }
+        boolean isValidTransition = false;
+        switch(currentStatus){
+            case "Pending":
+                if (newStatus.equals("Confirmed") || newStatus.equals("Cancelled"))
+                    isValidTransition = true;break;
+            case "Confirmed":
+                if(newStatus.equals("Preparing")){
+                    isValidTransition = true;
+                    break;
+                }
+            case "Preparing":
+                if(newStatus.equals("Ready")){
+                    isValidTransition = true;
+                    break;
+                }
+            case "Ready":
+                if(newStatus.equals("Out for Delivery")){
+                    isValidTransition = true;
+                    break;
+                }
+            case "Out for Delivery":
+                if(newStatus.equals("Delivered")){
+                    isValidTransition = true;
+                    break;
+                }
+                if(isValidTransition){
+                    order.setStatus(newStatus);
+                }else{
+                    throw new IllegalArgumentException("Denied: Invalid state transition from "+currentStatus+" to "+newStatus);
+                }
+
+        }
+
+    }
+
+    public void payForOrder(Order order, double amountPaid, PaymentService paymentService){
+        if(order.isPaid()){
+            throw new IllegalArgumentException("Denied: Order is already paid");
+        }
+        if(paymentService.processPayment(amountPaid)) {
+            order.setPaid(true);
+        }else{
+            throw new IllegalArgumentException("Denied: Payment processing failed");
+        }
+    }
 }

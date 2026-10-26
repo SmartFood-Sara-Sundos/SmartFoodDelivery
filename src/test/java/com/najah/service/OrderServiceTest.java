@@ -165,4 +165,27 @@ class OrderServiceTest
         double finalPrice = orderService.getFinalReceipt("O-010", driver);
         assertEquals(35.0, finalPrice);
     }
+    @Test
+    public void testValidStatusTransition(){
+        OrderService orderService = new OrderService();
+        Order order = new Order("0-01",null,null,java.util.Collections.emptyList(),"Nablus");
+        orderService.updateOrderStatus(order, "Confirmed");
+        assertEquals("Confirmed",order.getStatus());
+
+        orderService.updateOrderStatus(order, "Preparing");
+        assertEquals("Preparing",order.getStatus());
+    }
+    @Test
+    public void testInvalidStatusTransition(){
+        OrderService orderService = new OrderService();
+        Order order = new Order("0-02",null,null,java.util.Collections.emptyList(),"Nablus");
+        try{
+            orderService.updateOrderStatus(order, "Delivered");
+            fail("Test Failed: The System should have thrown an exception but it didn't");
+
+        }catch(IllegalArgumentException e){
+            assertTrue(e.getMessage().contains("Invalid state transition"));
+
+        }
+    }
 }
