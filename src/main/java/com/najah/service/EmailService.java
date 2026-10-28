@@ -9,14 +9,31 @@ import java.util.logging.Logger;
 public class EmailService
 {
     private static final Logger logger = Logger.getLogger(EmailService.class.getName());
-    private final String username;
-    private final String password;
+    private String username;
+    private String password;
+
+
+    public EmailService(String mockUser, String mockPass)
+    {
+        this.username = mockUser;
+        this.password = mockPass;
+    }
+
 
     public EmailService()
     {
-        Dotenv dotenv = Dotenv.load();
-        this.username = dotenv.get("EMAIL_USERNAME");
-        this.password = dotenv.get("EMAIL_PASSWORD");
+        try
+        {
+            Dotenv dotenv = Dotenv.load();
+            this.username = dotenv.get("EMAIL_USERNAME");
+            this.password = dotenv.get("EMAIL_PASSWORD");
+        }
+        catch (Exception e)
+        {
+            logger.warning("Environment file (.env) not found! Using default values.");
+            this.username = "default@test.com";
+            this.password = "defaultPass";
+        }
     }
 
     public void sendEmail(String to, String subject, String body)
