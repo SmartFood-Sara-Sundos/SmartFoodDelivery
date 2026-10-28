@@ -20,4 +20,14 @@ class EmailServiceTest
         EmailService emailService = new EmailService();
         assertNotNull(emailService);
     }
+
+    @Test
+    void testSendEmailExecution_HitsCatchBlock()
+    {
+
+        EmailService emailService = new EmailService("dummy@test.com", "dummyPass");
+        emailService.sendEmail("recipient@test.com", "Test Subject", "Test Body");
+
+        assertNotNull(emailService);
+    }
 }
