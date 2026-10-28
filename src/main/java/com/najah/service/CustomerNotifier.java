@@ -1,13 +1,19 @@
 package com.najah.service;
 
-import java.util.logging.Logger;
+public class CustomerNotifier implements OrderObserver
+{
+    private EmailService emailService;
+    private String customerEmail;
 
-public class CustomerNotifier implements OrderObserver{
+    public CustomerNotifier(EmailService emailService, String customerEmail)
+    {
+        this.emailService = emailService;
+        this.customerEmail = customerEmail;
+    }
 
-    private static final Logger logger = Logger.getLogger(CustomerNotifier.class.getName());
     @Override
-    public void update(String message){
-
-        logger.info("[CUSTOMER NOTIFICATION] : "+ message);
+    public void update(String message)
+    {
+        emailService.sendEmail(customerEmail, "Smart Food Delivery - Order Update", message);
     }
 }
