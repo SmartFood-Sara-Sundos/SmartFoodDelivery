@@ -2,6 +2,7 @@ package com.najah.service;
 
 import com.najah.domain.Driver;
 import com.najah.domain.Order;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeliveryService
@@ -15,12 +16,26 @@ public class DeliveryService
 
     public boolean assignDriverToOrder(Order order, List<Driver> availableDrivers)
     {
-        if (driverSelectionStrategy == null)
+        if (driverSelectionStrategy == null || availableDrivers == null || availableDrivers.isEmpty())
         {
             return false;
         }
 
-        Driver selectedDriver = driverSelectionStrategy.selectDriver(availableDrivers);
+        List<Driver> eligibleDrivers = new ArrayList<>();
+        for (Driver driver : availableDrivers)
+        {
+            if (driver.isAvailable() && driver.canDeliver(order))
+            {
+                eligibleDrivers.add(driver);
+            }
+        }
+
+        if (eligibleDrivers.isEmpty())
+        {
+            return false;
+        }
+
+        Driver selectedDriver = driverSelectionStrategy.selectDriver(eligibleDrivers);
 
         if (selectedDriver != null)
         {

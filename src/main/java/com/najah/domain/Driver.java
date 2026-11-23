@@ -17,12 +17,29 @@ public class Driver
         this.estimatedTime = estimatedTime;
     }
 
+    public boolean canDeliver(Order order)
+    {
+        return order != null;
+    }
+
+    protected int getOrderTotalQuantity(Order order)
+    {
+        if (order == null || order.getItems() == null)
+        {
+            return 0;
+        }
+        int totalQuantity = 0;
+        for (OrderItem item : order.getItems())
+        {
+            totalQuantity += item.getQuantity();
+        }
+        return totalQuantity;
+    }
+
     public String getId() { return id; }
     public String getName() { return name; }
-
     public boolean isAvailable() { return isAvailable; }
-    public void setAvailable(boolean available) { isAvailable = available; } // عشان نغير حالته لـ Busy
-
+    public void setAvailable(boolean available) { isAvailable = available; }
     public double getDistance() { return distance; }
     public double getEstimatedTime() { return estimatedTime; }
 }
